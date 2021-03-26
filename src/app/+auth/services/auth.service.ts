@@ -27,8 +27,12 @@ export class AuthService extends NgxGenericRestService {
     return super
       .getHttpClient()
       .post<string>(
-        `${super.url}?username=${username}&password=${password}`,
+        `${super.url}/login?username=${username}&password=${password}`,
         null
       );
+  }
+
+  signOut(): Observable<string> {
+    return super.getHttpClient().post<string>(`${super.url}/logout`, null);
   }
 }

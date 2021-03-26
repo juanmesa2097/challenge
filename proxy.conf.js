@@ -39,7 +39,7 @@ const PROXY_CONFIG = {
             .status(400)
             .end(JSON.stringify("Route does not support that method."));
         }
-      } else if (req.url.startsWith("/api/auth")) {
+      } else if (req.url.startsWith("/api/auth/login")) {
         if (req.method !== "POST" && req.method !== "GET") {
           res
             .status(400)
@@ -64,7 +64,7 @@ const PROXY_CONFIG = {
           res.status(400).end(JSON.stringify("Bad Credentials!"));
         }
         return true;
-      } else if (req.url.startsWith("/api/logout")) {
+      } else if (req.url.startsWith("/api/auth/logout")) {
         loggedIn = false;
         res.status(200).end(JSON.stringify("User logged out."));
         return true;

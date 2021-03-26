@@ -1,0 +1,41 @@
+<!-- button -->
+<button
+  tuiLink
+  mode="pseudo"
+  tuiDropdownAlign="right"
+  tuiDropdownDirection="top"
+  [tuiDropdownContent]="dropdownContent"
+  [tuiDropdown]="open"
+  (click)="onClickOpenPopup()"
+>
+  <tui-avatar [rounded]="true" [text]="'Juan Mesa'"></tui-avatar>
+</button>
+
+<!-- /button -->
+
+<!-- dropdown -->
+<ng-template #dropdownContent>
+  <ul>
+    <li class="flex items-center p-3">
+      <tui-avatar size="s" [rounded]="true" [text]="'Juan Mesa'"></tui-avatar>
+      <div class="flex flex-col ml-3">
+        <span>juanmesa2097</span>
+        <span>Juan Mesa</span>
+      </div>
+    </li>
+    <li class="flex items-center p-3">
+      <button
+        type="button"
+        tuiButton
+        icon="tuiIconArrowLeft"
+        appearance="secondary"
+        size="s"
+        class="w-full text-white"
+        (click)="onClickSignOut()"
+      >
+        Sign out
+      </button>
+    </li>
+  </ul>
+</ng-template>
+<!-- /dropdown -->

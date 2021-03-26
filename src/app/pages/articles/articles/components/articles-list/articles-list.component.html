@@ -1,0 +1,25 @@
+<!-- table -->
+<table tuiTable [columns]="columns" class="w-full">
+  <!-- thead -->
+  <thead>
+    <tr tuiThGroup>
+      <th *tuiHead="'title'" tuiTh>Title</th>
+      <th *tuiHead="'author'" tuiTh>Author</th>
+    </tr>
+  </thead>
+  <!-- /thead -->
+
+  <!-- tbody -->
+  <tbody tuiTbody [data]="articles">
+    <!-- row -->
+    <tr *tuiRow="let article of articles; let index = index" tuiTr>
+      <!-- cells -->
+      <td *tuiCell="'title'" tuiTd>{{ index + 1 }}. {{ article.title }}</td>
+      <td *tuiCell="'author'" tuiTd>{{ article.author }}</td>
+      <!-- /cells -->
+    </tr>
+    <!-- /row -->
+  </tbody>
+  <!-- /tbody -->
+</table>
+<!-- /table -->

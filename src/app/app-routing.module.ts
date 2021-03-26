@@ -17,7 +17,9 @@ const routes: Routes = [
     path: Path.Articles,
     canActivate: [],
     loadChildren: () =>
-      import("@pages/articles/articles.module").then((m) => m.ArticlesModule),
+      import("@pages/articles/articles/articles.module").then(
+        (m) => m.ArticlesModule
+      ),
   },
 ];
 
@@ -26,7 +28,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes, {
       preloadingStrategy: PreloadAllModules,
       relativeLinkResolution: "legacy",
-      useHash: true
+      useHash: true,
     }),
   ],
   exports: [RouterModule],

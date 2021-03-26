@@ -1,0 +1,16 @@
+<!-- container -->
+<div class="container">
+  <!-- page header -->
+  <div class="flex flex-col mb-16">
+    <h1 class="mb-0 text-3xl">Articles</h1>
+    <tui-breadcrumbs [items]="breadcrumbs"></tui-breadcrumbs>
+  </div>
+  <!-- /page header -->
+
+  <!-- list -->
+  <tui-loader [overlay]="true" [showLoader]="loading">
+    <sai-articles-list [articles]="articles$ | async"></sai-articles-list>
+  </tui-loader>
+  <!-- /list -->
+</div>
+<!-- /container -->

@@ -15,7 +15,7 @@ export class SignInPage implements OnInit, OnDestroy {
   loading = false;
   errorMsg = "";
 
-  destroy$ = new Subject();
+  private destroy$ = new Subject();
 
   constructor(
     private router: Router,

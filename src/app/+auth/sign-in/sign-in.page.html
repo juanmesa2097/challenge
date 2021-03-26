@@ -1,7 +1,17 @@
-<sai-credentials-form
-  [loading]="loading"
-  [errorMsg]="errorMsg"
-  (signIn)="onSubmit($event)"
-  (signUp)="onSignUp()"
-  (forgotPassword)="onForgotPassword()"
-></sai-credentials-form>
+<!-- container -->
+<div class="container">
+  <!-- inner container -->
+  <div class="max-w-lg mx-auto mt-12">
+    <!-- form -->
+    <sai-credentials-form
+      [loading]="loading"
+      [errorMsg]="errorMsg"
+      (signIn)="onSubmit($event)"
+      (signUp)="onSignUp()"
+      (forgotPassword)="onForgotPassword()"
+    ></sai-credentials-form>
+    <!-- /form -->
+  </div>
+  <!-- /inner container -->
+</div>
+<!-- /container -->
