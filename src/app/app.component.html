@@ -1,0 +1,24 @@
+<tui-theme-night></tui-theme-night>
+
+<tui-root tuiMode="onDark">
+  <!-- layout -->
+  <sai-layout>
+    <router-outlet></router-outlet>
+  </sai-layout>
+  <!-- /layout -->
+
+  <!-- portal layers -->
+  <ng-container ngProjectAs="tuiOverDialogs">
+      <!-- Content over dialogs-->
+  </ng-container>
+  <ng-container ngProjectAs="tuiOverNotifications">
+      <!-- Content over notifications -->
+  </ng-container>
+  <ng-container ngProjectAs="tuiOverPortals">
+      <!-- Content over dropdowns -->
+  </ng-container>
+  <ng-container ngProjectAs="tuiOverHints">
+      <!-- Content over hints -->
+  </ng-container>
+  <!-- /portal layers -->
+</tui-root>
