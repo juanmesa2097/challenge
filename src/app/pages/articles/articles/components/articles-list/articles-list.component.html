@@ -14,7 +14,17 @@
     <!-- row -->
     <tr *tuiRow="let article of articles; let index = index" tuiTr>
       <!-- cells -->
-      <td *tuiCell="'title'" tuiTd>{{ index + 1 }}. {{ article.title }}</td>
+      <td *tuiCell="'title'" tuiTd>
+        <button
+          type="button"
+          tuiLink
+          icon="tuiIconComment"
+          iconAlign="left"
+          (click)="onClickArticle(article)"
+        >
+          {{ index + 1 }}. {{ article.title }}
+        </button>
+      </td>
       <td *tuiCell="'author'" tuiTd>{{ article.author }}</td>
       <!-- /cells -->
     </tr>

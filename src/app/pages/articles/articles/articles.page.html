@@ -9,8 +9,19 @@
 
   <!-- list -->
   <tui-loader [overlay]="true" [showLoader]="loading">
-    <sai-articles-list [articles]="articles$ | async"></sai-articles-list>
+    <sai-articles-list
+      [articles]="articles$ | async"
+      (clickArticle)="onClickArticle($event)"
+    ></sai-articles-list>
   </tui-loader>
   <!-- /list -->
+
+  <!-- article content -->
+  <article *ngIf="article" class="mt-12">
+    <h2 class="mb-2 text-xl">{{article.title}}</h2>
+
+    <p class="text-lg text-gray-500">{{article.content}}</p>
+  </article>
+  <!-- article content end -->
 </div>
 <!-- /container -->

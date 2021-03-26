@@ -12,6 +12,8 @@ import { ArticlesService } from "../services/articles.service";
 export class ArticlesPage implements OnInit {
   articles$!: Observable<Article[]>;
 
+  article!: Article;
+
   breadcrumbs = [];
   loading = false;
 
@@ -19,7 +21,7 @@ export class ArticlesPage implements OnInit {
     private activatedRoute: ActivatedRoute,
     private articlesService: ArticlesService
   ) {
-    this.breadcrumbs = activatedRoute.snapshot.data.breadcrumbs;
+    this.breadcrumbs = this.activatedRoute.snapshot.data.breadcrumbs;
   }
 
   ngOnInit(): void {
@@ -33,5 +35,9 @@ export class ArticlesPage implements OnInit {
         mapFn: (res) => res.articles,
       })
       .pipe(finalize(() => (this.loading = false)));
+  }
+
+  onClickArticle(article: Article) {
+    this.article = article;
   }
 }
