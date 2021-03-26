@@ -1,1 +1,7 @@
-<sai-credentials-form (submit)="onSubmit($event)"></sai-credentials-form>
+<sai-credentials-form
+  [loading]="loading"
+  [errorMsg]="errorMsg"
+  (signIn)="onSubmit($event)"
+  (signUp)="onSignUp()"
+  (forgotPassword)="onForgotPassword()"
+></sai-credentials-form>

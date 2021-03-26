@@ -4,6 +4,7 @@ import { NgModule } from "@angular/core";
 import { LayoutModule } from "@app/@components/layout/layout.module";
 import {
   iconsPathFactory,
+  TuiNotificationsModule,
   TuiRootModule,
   TuiThemeNightComponent,
   TuiThemeNightModule,
@@ -19,7 +20,12 @@ import {
     TuiRootModule,
     TuiThemeNightModule,
   ],
-  exports: [TuiRootModule, LayoutModule, TuiThemeNightComponent],
+  exports: [
+    TuiRootModule,
+    LayoutModule,
+    TuiThemeNightComponent,
+    TuiNotificationsModule,
+  ],
   providers: [
     {
       provide: TUI_ICONS_PATH,

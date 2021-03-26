@@ -1,7 +1,11 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
-import { TuiButtonModule, TuiLoaderModule } from "@taiga-ui/core";
+import {
+  TuiButtonModule,
+  TuiLoaderModule,
+  TuiNotificationModule,
+} from "@taiga-ui/core";
 import {
   TuiFieldErrorModule,
   TuiInputModule,
@@ -22,6 +26,7 @@ import { SignInPage } from "./sign-in.page";
     TuiFieldErrorModule,
     TuiButtonModule,
     TuiLoaderModule,
+    TuiNotificationModule,
   ],
 })
 export class SignInModule {}

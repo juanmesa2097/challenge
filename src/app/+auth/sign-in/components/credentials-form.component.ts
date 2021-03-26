@@ -1,6 +1,13 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+} from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { User } from '@app/+auth/models/user.model';
+import { User } from "@app/+auth/models/user.model";
 
 @Component({
   selector: "sai-credentials-form",
@@ -9,7 +16,12 @@ import { User } from '@app/+auth/models/user.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CredentialsFormComponent implements OnInit {
-  @Output() submit = new EventEmitter<User>();
+  @Input() loading!: boolean;
+  @Input() errorMsg!: string;
+
+  @Output() signIn = new EventEmitter<User>();
+  @Output() signUp = new EventEmitter<void>();
+  @Output() forgotPassword = new EventEmitter<void>();
 
   credentialsForm!: FormGroup;
 
@@ -23,10 +35,18 @@ export class CredentialsFormComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit(): void {
-    const {valid, value} = this.credentialsForm;
+    const { valid, value } = this.credentialsForm;
 
     if (valid) {
-      this.submit.emit(value);
+      this.signIn.emit(value);
     }
+  }
+
+  onClickSignUp() {
+    this.signUp.emit();
+  }
+
+  onClickForgotPassword() {
+    this.forgotPassword.emit();
   }
 }
