@@ -1,6 +1,6 @@
 <tui-theme-night></tui-theme-night>
 
-<tui-root tuiMode="onDark">
+<tui-root tuiMode="onDark" class="h-full">
   <!-- logged in -->
   <sai-layout *ngIf="isLoggedIn$ | async; else notAuthorized">
     <router-outlet></router-outlet>
