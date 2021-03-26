@@ -6,6 +6,8 @@
   tuiDropdownDirection="top"
   [tuiDropdownContent]="dropdownContent"
   [tuiDropdown]="open"
+  saiClickOutside
+  (clickOutside)="onClickOutside()"
   (click)="onClickOpenPopup()"
 >
   <tui-avatar [rounded]="true" [text]="'Juan Mesa'"></tui-avatar>
@@ -20,7 +22,7 @@
       <tui-avatar size="s" [rounded]="true" [text]="'Juan Mesa'"></tui-avatar>
       <div class="flex flex-col ml-3">
         <span>juanmesa2097</span>
-        <span>Juan Mesa</span>
+        <span class="text-gray-500">Juan Mesa</span>
       </div>
     </li>
     <li class="flex items-center p-3">

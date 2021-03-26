@@ -30,6 +30,10 @@ export class UserPanelComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {}
 
+  onClickOutside(): void {
+    this.open = false;
+  }
+
   onClickOpenPopup(): void {
     this.open = !this.open;
   }
