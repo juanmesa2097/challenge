@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
 import { Path } from "./@core/enums/path.enum";
+import { AuthGuard, NoAuthGuard } from "./@core/guards";
 
 const routes: Routes = [
   // Redirect
@@ -8,7 +9,7 @@ const routes: Routes = [
   // Auth modules
   {
     path: Path.SignIn,
-    canActivate: [],
+    canActivate: [NoAuthGuard],
     loadChildren: () =>
       import("@app/pages/+auth/sign-in/sign-in.module").then(
         (m) => m.SignInModule
@@ -17,7 +18,7 @@ const routes: Routes = [
   // Feature modules
   {
     path: Path.Articles,
-    canActivate: [],
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import("@pages/articles/articles/articles.module").then(
         (m) => m.ArticlesModule

@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { Path } from "@app/@core/enums";
 import { TuiNotification, TuiNotificationsService } from "@taiga-ui/core";
 import { Subject } from "rxjs";
-import { share, takeUntil } from "rxjs/operators";
+import { finalize, takeUntil } from "rxjs/operators";
 import { User } from "../models/user.model";
 import { AuthService } from "../services/auth.service";
 
@@ -14,14 +14,20 @@ import { AuthService } from "../services/auth.service";
 export class SignInPage implements OnInit, OnDestroy {
   loading = false;
   errorMsg = "";
+  returnUrl!: string;
 
   private destroy$ = new Subject();
 
   constructor(
     private router: Router,
+    private activatedRoute: ActivatedRoute,
     private notificationsService: TuiNotificationsService,
     private authService: AuthService
-  ) {}
+  ) {
+    this.returnUrl =
+      this.activatedRoute.snapshot.queryParamMap.get("returnUrl") ||
+      `/${Path.Articles}`;
+  }
 
   ngOnInit(): void {}
 
@@ -29,29 +35,17 @@ export class SignInPage implements OnInit, OnDestroy {
     this.loading = true;
     this.authService
       .signIn(crendentials)
-      .pipe(share(), takeUntil(this.destroy$))
+      .pipe(
+        takeUntil(this.destroy$),
+        finalize(() => (this.loading = false))
+      )
       .subscribe(
-        (res) => {
-          console.log(res);
-          this.loading = false;
-          this.router.navigate(["/", Path.Articles]);
+        (user) => {
+          this.router.navigate([this.returnUrl]);
+          this.showWelcomeMessage(`${user.firstName} ${user.lastName}`);
         },
         (err) => {
-          if (err.status === 400) {
-            this.errorMsg = "Username or password is incorrect";
-          } else {
-            this.notificationsService
-              .show(err.message, {
-                label: "😢 An error ocurred",
-                status: TuiNotification.Error,
-                hasCloseButton: true,
-                autoClose: false,
-              })
-              .pipe(takeUntil(this.destroy$))
-              .subscribe();
-          }
-
-          this.loading = false;
+          this.showErrorMessage(err);
         }
       );
   }
@@ -72,6 +66,31 @@ export class SignInPage implements OnInit, OnDestroy {
       })
       .pipe(takeUntil(this.destroy$))
       .subscribe();
+  }
+
+  private showWelcomeMessage(name: string): void {
+    this.notificationsService
+      .show(`Welcome ${name} 👋👋👋`, {
+        status: TuiNotification.Success,
+      })
+      .pipe(takeUntil(this.destroy$))
+      .subscribe();
+  }
+
+  private showErrorMessage(error): void {
+    if (error.status === 400) {
+      this.errorMsg = "Username or password is incorrect";
+    } else {
+      this.notificationsService
+        .show(error.message, {
+          label: "😢 An error ocurred",
+          status: TuiNotification.Error,
+          hasCloseButton: true,
+          autoClose: false,
+        })
+        .pipe(takeUntil(this.destroy$))
+        .subscribe();
+    }
   }
 
   ngOnDestroy(): void {

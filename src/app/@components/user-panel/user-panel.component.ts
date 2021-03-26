@@ -6,6 +6,7 @@ import {
 } from "@angular/core";
 import { Router } from "@angular/router";
 import { Path } from "@app/@core/enums";
+import { UserDetails } from "@app/pages/+auth/models/user.model";
 import { AuthService } from "@app/pages/+auth/services/auth.service";
 import { TuiNotification, TuiNotificationsService } from "@taiga-ui/core";
 import { Subject } from "rxjs";
@@ -18,6 +19,8 @@ import { takeUntil } from "rxjs/operators";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserPanelComponent implements OnInit, OnDestroy {
+  user: UserDetails;
+
   open = false;
 
   private destroy$ = new Subject();
@@ -28,7 +31,14 @@ export class UserPanelComponent implements OnInit, OnDestroy {
     private notificationsService: TuiNotificationsService
   ) {}
 
-  ngOnInit(): void {}
+  get userName() {
+    const { firstName, lastName } = this.user;
+    return `${firstName} ${lastName}`;
+  }
+
+  ngOnInit(): void {
+    this.user = this.authService.user;
+  }
 
   onClickOutside(): void {
     this.open = false;

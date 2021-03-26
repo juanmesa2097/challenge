@@ -5,6 +5,6 @@ export interface User {
 }
 
 export interface UserDetails {
-  firstName: string;
-  lastName: string;
+  firstName?: string;
+  lastName?: string;
 }

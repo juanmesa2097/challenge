@@ -1,24 +1,30 @@
 <tui-theme-night></tui-theme-night>
 
 <tui-root tuiMode="onDark">
-  <!-- layout -->
-  <sai-layout>
+  <!-- logged in -->
+  <sai-layout *ngIf="isLoggedIn$ | async; else notAuthorized">
     <router-outlet></router-outlet>
   </sai-layout>
-  <!-- /layout -->
+  <!-- /logged in -->
+
+  <!-- unauthorized -->
+  <ng-template #notAuthorized>
+    <router-outlet></router-outlet>
+  </ng-template>
+  <!-- /unauthorized -->
 
   <!-- portal layers -->
   <ng-container ngProjectAs="tuiOverDialogs">
-      <!-- Content over dialogs-->
+    <!-- Content over dialogs-->
   </ng-container>
   <ng-container ngProjectAs="tuiOverNotifications">
-      <!-- Content over notifications -->
+    <!-- Content over notifications -->
   </ng-container>
   <ng-container ngProjectAs="tuiOverPortals">
-      <!-- Content over dropdowns -->
+    <!-- Content over dropdowns -->
   </ng-container>
   <ng-container ngProjectAs="tuiOverHints">
-      <!-- Content over hints -->
+    <!-- Content over hints -->
   </ng-container>
   <!-- /portal layers -->
 </tui-root>
