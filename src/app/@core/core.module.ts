@@ -1,22 +1,30 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { LayoutModule } from '@app/@components/layout/layout.module';
-import { TuiRootModule, TuiThemeNightComponent, TuiThemeNightModule } from '@taiga-ui/core';
-
-
+import { CommonModule } from "@angular/common";
+import { HttpClientModule } from "@angular/common/http";
+import { NgModule } from "@angular/core";
+import { LayoutModule } from "@app/@components/layout/layout.module";
+import {
+  iconsPathFactory,
+  TuiRootModule,
+  TuiThemeNightComponent,
+  TuiThemeNightModule,
+  TUI_ICONS_PATH,
+} from "@taiga-ui/core";
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
+    HttpClientModule,
     LayoutModule,
     TuiRootModule,
-    TuiThemeNightModule
+    TuiThemeNightModule,
   ],
-  exports: [
-    TuiRootModule,
-    LayoutModule,
-    TuiThemeNightComponent
-  ]
+  exports: [TuiRootModule, LayoutModule, TuiThemeNightComponent],
+  providers: [
+    {
+      provide: TUI_ICONS_PATH,
+      useValue: iconsPathFactory("assets/taiga-ui/icons/"),
+    },
+  ],
 })
-export class CoreModule { }
+export class CoreModule {}

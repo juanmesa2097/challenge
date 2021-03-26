@@ -2,7 +2,8 @@ import { Injectable } from "@angular/core";
 import { ApiResourceName } from "@app/@core/enums";
 import { environment } from "@environments/environment";
 import { NgxGenericRestService } from "ngx-grs";
-import { BehaviorSubject } from "rxjs";
+import { BehaviorSubject, Observable } from "rxjs";
+import { User } from "../models/user.model";
 
 @Injectable({
   providedIn: "root",
@@ -21,10 +22,7 @@ export class AuthService extends NgxGenericRestService {
     return this.isLoggedIn$.getValue();
   }
 
-  // signIn(username: string, password: string) {
-  //   return super.add({
-  //     username,
-  //     password,
-  //   }) as string;
-  // }
+  signIn(credentials: User): Observable<string> {
+    return super.getHttpClient().post<string>(super.url, credentials);
+  }
 }

@@ -1,6 +1,13 @@
-// 1. base
-@import "./01-base/document.scss"
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
-// 2. components
+@layer base {
+  @import "./01-base/document.scss";
+}
 
-// 3. utilities
+@layer components {
+}
+
+@layer utilities {
+}
