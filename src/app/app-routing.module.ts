@@ -10,7 +10,9 @@ const routes: Routes = [
     path: Path.SignIn,
     canActivate: [],
     loadChildren: () =>
-      import("@auth/sign-in/sign-in.module").then((m) => m.SignInModule),
+      import("@app/pages/+auth/sign-in/sign-in.module").then(
+        (m) => m.SignInModule
+      ),
   },
   // Feature modules
   {

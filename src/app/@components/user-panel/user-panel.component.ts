@@ -5,8 +5,8 @@ import {
   OnInit,
 } from "@angular/core";
 import { Router } from "@angular/router";
-import { AuthService } from "@app/+auth/services/auth.service";
 import { Path } from "@app/@core/enums";
+import { AuthService } from "@app/pages/+auth/services/auth.service";
 import { TuiNotification, TuiNotificationsService } from "@taiga-ui/core";
 import { Subject } from "rxjs";
 import { takeUntil } from "rxjs/operators";

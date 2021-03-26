@@ -25,7 +25,7 @@
       "@environments/*": ["src/environments/*"],
       "@containers/*": ["src/app/@containers/*"],
       "@components/*": ["src/app/@components/*"],
-      "@auth/*": ["src/app/+auth/*"],
+      "@auth/*": ["src/app/pages/+auth/*"],
       "@pages/*": ["src/app/pages/*"],
     }
   }
