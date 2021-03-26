@@ -52,7 +52,6 @@ export class UserPanelComponent implements OnInit, OnDestroy {
     this.authService.signOut().subscribe(
       () => this.router.navigate(["/", Path.SignIn]),
       (err) => {
-        console.log(err);
         this.notificationsService
           .show(err.message, {
             label: "😢 An error ocurred",

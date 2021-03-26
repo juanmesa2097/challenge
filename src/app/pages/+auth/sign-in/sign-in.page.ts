@@ -31,10 +31,21 @@ export class SignInPage implements OnInit, OnDestroy {
 
   ngOnInit(): void {}
 
-  onSubmit(crendentials: User): void {
+  onSubmit({
+    valid,
+    credentials,
+  }: {
+    valid: boolean;
+    credentials: User;
+  }): void {
+    if (!valid) {
+      this.showFillFieldsMessage();
+      return;
+    }
+
     this.loading = true;
     this.authService
-      .signIn(crendentials)
+      .signIn(credentials)
       .pipe(
         takeUntil(this.destroy$),
         finalize(() => (this.loading = false))
@@ -63,6 +74,16 @@ export class SignInPage implements OnInit, OnDestroy {
     this.notificationsService
       .show("Will navigate to sign-up page", {
         status: TuiNotification.Info,
+      })
+      .pipe(takeUntil(this.destroy$))
+      .subscribe();
+  }
+
+  private showFillFieldsMessage(): void {
+    this.notificationsService
+      .show(`You must fill all the required fields`, {
+        label: "Hold on!",
+        status: TuiNotification.Warning,
       })
       .pipe(takeUntil(this.destroy$))
       .subscribe();

@@ -19,7 +19,7 @@ export class CredentialsFormComponent implements OnInit {
   @Input() loading!: boolean;
   @Input() errorMsg!: string;
 
-  @Output() signIn = new EventEmitter<User>();
+  @Output() signIn = new EventEmitter<{ valid: boolean; credentials: User }>();
   @Output() signUp = new EventEmitter<void>();
   @Output() forgotPassword = new EventEmitter<void>();
 
@@ -35,11 +35,8 @@ export class CredentialsFormComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit(): void {
-    const { valid, value } = this.credentialsForm;
-
-    if (valid) {
-      this.signIn.emit(value);
-    }
+    const { valid, value } = this.credentialsForm || {};
+    this.signIn.emit({ valid, credentials: value });
   }
 
   onClickSignUp() {

@@ -4,7 +4,6 @@ const PROXY_CONFIG = {
   "/api": {
     target: "http://localhost:4200",
     bypass: function (req, res, proxyOptions) {
-      console.log(req.url, req.method, req.query);
       if (req.url.startsWith("/api/articles")) {
         if (req.method === "GET") {
           const articles = [

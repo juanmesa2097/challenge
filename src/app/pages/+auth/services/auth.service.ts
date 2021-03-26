@@ -35,7 +35,7 @@ export class AuthService extends NgxGenericRestService {
   }
 
   signIn(credentials: User): Observable<UserDetails> {
-    const { username, password } = credentials;
+    const { username, password } = credentials || {};
     return super
       .getHttpClient()
       .post<UserDetails>(
